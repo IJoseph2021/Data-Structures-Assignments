@@ -4,6 +4,9 @@
 
 class User
 {
+private:
+    string username;
+    vector<Tweet> tweets;
 public:
     User();
 };
