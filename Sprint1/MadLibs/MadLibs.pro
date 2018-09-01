@@ -4,4 +4,12 @@ CONFIG -= app_bundle
 CONFIG -= qt
 
 SOURCES += \
-        main.cpp
+        main.cpp \
+    user.cpp \
+    tweet.cpp \
+    word.cpp
+
+HEADERS += \
+    user.h \
+    tweet.h \
+    word.h
