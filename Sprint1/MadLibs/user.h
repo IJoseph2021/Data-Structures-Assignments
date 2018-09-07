@@ -13,6 +13,7 @@ public:
     std::string getUsername();
     void setUsername(std::string a);
     void addTweet(Tweet a);
+    Tweet returnLast();
 };
 
 #endif // USER_H

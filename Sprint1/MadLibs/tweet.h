@@ -8,14 +8,15 @@
 class Tweet
 {
 private:
-    int id;
+    std::string id;
     std::vector <Word> words;
 public:
-    Tweet(int a);
-    int getId();
-    void setId(int a);
+    Tweet(std::string a);
+    std::string getId();
+    void setId(std::string a);
     void addWord(Word a);
     std::vector<Word> GetCopyOfVector();
+    Word returnLast();
 };
 
 #endif // TWEET_H

@@ -20,4 +20,9 @@ void User::addTweet(Tweet a){
     tweets.push_back(a);
 }
 
+Tweet User::returnLast(){
+    Tweet a = tweets.back();
+    return a;
+}
+
 

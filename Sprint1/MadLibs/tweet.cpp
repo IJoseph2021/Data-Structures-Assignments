@@ -1,15 +1,15 @@
 #include "tweet.h"
 using namespace std;
-Tweet::Tweet(int a)
+Tweet::Tweet(string a)
 {
     id = a;
 }
 
-int Tweet::getId(){
+string Tweet::getId(){
     return id;
 }
 
-void Tweet::setId(int a){
+void Tweet::setId(string a){
     id = a;
 }
 
@@ -19,4 +19,9 @@ void Tweet::addWord(Word a){
 
 vector<Word> Tweet::GetCopyOfVector(){
     return words;
+}
+
+Word Tweet::returnLast(){
+    Word a = words.back();
+    return a;
 }
