@@ -27,3 +27,7 @@ Word Tweet::returnLast(){
     Word a = words.back();
     return a;
 }
+
+Word& Tweet::accessWord(int i){
+    return words[i];
+}

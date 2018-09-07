@@ -25,4 +25,7 @@ Tweet User::returnLast(){
     return a;
 }
 
+Tweet& User::accessTweet(int a){
+    return tweets[a];
+}
 

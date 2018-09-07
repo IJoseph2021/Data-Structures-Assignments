@@ -17,6 +17,8 @@ public:
     void addWord(Word a);
     std::vector<Word> GetCopyOfVector();
     Word returnLast();
+    Word& accessWord(int a);
+
 };
 
 #endif // TWEET_H

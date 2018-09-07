@@ -14,6 +14,7 @@ public:
     void setUsername(std::string a);
     void addTweet(Tweet a);
     Tweet returnLast();
+    Tweet& accessTweet(int a);
 };
 
 #endif // USER_H

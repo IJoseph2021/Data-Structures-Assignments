@@ -29,8 +29,8 @@ int main(int argc, char *argv[])
         string b = createUser();
         createTweet(a, b);
         cout<<users[0].getUsername()<<endl;
-        cout<<(((users[0]).returnLast()).returnLast()).getWord()<<endl;
-        cout<<(((users[0]).returnLast()).returnLast()).getPOS()<<endl;
+        cout<<(((users[0]).accessTweet(0)).accessWord(0)).getWord()<<endl;
+        cout<<(((users[0]).accessTweet(0)).accessWord(0)).getPOS()<<endl;
 
     }
 
@@ -76,8 +76,8 @@ void createTweet(string b, string a){
         if(users[i].getUsername() == a){
             cout<<"hi"<<endl;
             (users[i]).addTweet( Tweet (b));
-            ((users[i]).returnLast()).addWord(Word(input, input2));
+            Word b(input, input2);
+            ((users[i]).accessTweet(i)).addWord(b);
         }
     }
-
 }
