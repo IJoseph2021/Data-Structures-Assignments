@@ -1,4 +1,6 @@
 #include "tweet.h"
+#include <string>
+#include <iostream>
 using namespace std;
 Tweet::Tweet(string a)
 {

@@ -32,7 +32,6 @@ int main(int argc, char *argv[])
         cout<<(((users[0]).returnLast()).returnLast()).getWord()<<endl;
         cout<<(((users[0]).returnLast()).returnLast()).getPOS()<<endl;
 
-
     }
 
     else{
