@@ -6,6 +6,9 @@
 #include "user.h"
 #include "word.h"
 #include <cctype>
+#include <stdio.h>
+#include <string.h>
+
 
 using namespace std;
 string createUser();
@@ -20,16 +23,16 @@ int main(int argc, char *argv[])
 {
     string initial;
     myfile.open(argv[1]);
+    string c;
+    getline(myfile, c);
     if (myfile.is_open()){
-        string c;
-        getline(myfile, c);
+        while(!myfile.eof()){
         string a = getId();
         string b = createUser();
         createTweet(a, b);
-        cout<<users[0].getUsername()<<endl;
-        cout<<(((users[0]).accessTweet(0)).accessWord(0)).getWord()<<endl;
-        cout<<(((users[0]).accessTweet(0)).accessWord(0)).getPOS()<<endl;
+        cout<<"tweet created"<<endl;
 
+    }
     }
     else{
         cout << "Unable to open file";
@@ -61,30 +64,59 @@ void createTweet(string b, string a){
     string junk;
     string input;
     string input2;
-    char str[];
+    string sent;
     bool check = false;
+    vector<char*> temp(400);
+    int x =0;
+    int y =1;
+    getline(myfile, junk, '\'');
+    getline(myfile, input, '\'');
     while(check == false){
-        getline(myfile, junk, '\'');
+        getline(myfile, junk, ',');
         cout<<junk<<endl;
-        str = junk;
-        for(int i = 0; i<(sizeof(str)/sizeof(str[0])); i++){
-            if(isdigit(str[i])){
-                break;
+        (temp[x])= new char[junk.length()+1];
+        strcpy(temp[x], junk.c_str());
+        for(int i = 0; i<(sizeof(temp[x])/sizeof(temp[x][0])); i++){
+            if(temp[x][i] == '"'){
+                cout<<"hi"<<endl;
+                check = true;
+                getline(myfile, sent);
+                cout<<sent<<endl;
+                goto label;
             }
         }
-        getline(myfile, input, '\'');
-        cout<<input<<endl;
+        x++;
         getline(myfile, junk, '\'');
         cout<<junk<<endl;
-        getline(myfile, input2, '\'');
-        cout<<input2<<endl;
+        (temp[x])= new char[junk.length()+1];
+        strcpy(temp[x], junk.c_str());
+        for(int i = 0; i<(sizeof(temp[x])/sizeof(temp[x][0])); i++){
+            if(temp[x][i] == '"'){
+                cout<<"hi"<<endl;
+                check = true;
+                getline(myfile, sent);
+                goto label;
+            }
+        }
+        x++;
+        if((y%2) == 0){
+            getline(myfile, input, '\'');
+            cout<<input<<endl;
+        }
+        else{
+            getline(myfile, input2, '\'');
+                  cout<<input2<<endl;
+        }
+        y++;
+
         for(int i =0; i<users.size();i++){
             if(users[i].getUsername() == a){
-                cout<<"hi"<<endl;
                 (users[i]).addTweet( Tweet (b));
                 Word b(input, input2);
                 ((users[i]).accessTweet(i)).addWord(b);
             }
         }
     }
+    label:
+    cout<<endl;
 }
