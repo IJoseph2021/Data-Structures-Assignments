@@ -1,22 +1,20 @@
 #include <iostream>
 #include <fstream>
 #include <string>
-#include<vector>
+#include <vector>
 #include "tweet.h"
 #include "user.h"
 #include "word.h"
+#include <cctype>
 
 using namespace std;
-
 string createUser();
-
 string getId();
-
 void createTweet(string a, string b);
-
-
 ifstream myfile;
 vector<User> users;
+
+
 
 int main(int argc, char *argv[])
 {
@@ -33,7 +31,6 @@ int main(int argc, char *argv[])
         cout<<(((users[0]).accessTweet(0)).accessWord(0)).getPOS()<<endl;
 
     }
-
     else{
         cout << "Unable to open file";
     }
@@ -64,20 +61,30 @@ void createTweet(string b, string a){
     string junk;
     string input;
     string input2;
-    getline(myfile, junk, '\'');
-    cout<<junk<<endl;
-    getline(myfile, input, '\'');
-    cout<<input<<endl;
-    getline(myfile, junk, '\'');
-    cout<<junk<<endl;
-    getline(myfile, input2, '\'');
-    cout<<input2<<endl;
-    for(int i =0; i<users.size();i++){
-        if(users[i].getUsername() == a){
-            cout<<"hi"<<endl;
-            (users[i]).addTweet( Tweet (b));
-            Word b(input, input2);
-            ((users[i]).accessTweet(i)).addWord(b);
+    char str[];
+    bool check = false;
+    while(check == false){
+        getline(myfile, junk, '\'');
+        cout<<junk<<endl;
+        str = junk;
+        for(int i = 0; i<(sizeof(str)/sizeof(str[0])); i++){
+            if(isdigit(str[i])){
+                break;
+            }
+        }
+        getline(myfile, input, '\'');
+        cout<<input<<endl;
+        getline(myfile, junk, '\'');
+        cout<<junk<<endl;
+        getline(myfile, input2, '\'');
+        cout<<input2<<endl;
+        for(int i =0; i<users.size();i++){
+            if(users[i].getUsername() == a){
+                cout<<"hi"<<endl;
+                (users[i]).addTweet( Tweet (b));
+                Word b(input, input2);
+                ((users[i]).accessTweet(i)).addWord(b);
+            }
         }
     }
 }
