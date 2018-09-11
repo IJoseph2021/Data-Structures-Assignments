@@ -10,10 +10,6 @@ Word::Word(string a, string b)
     word = a;
     POS = b;
 }
-
-\
-
-
 string Word::getPOS(){
     return POS;
 }

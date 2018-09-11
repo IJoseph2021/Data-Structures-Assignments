@@ -13,6 +13,7 @@ public:
     std::string getPOS();
     void setWord(std::string a);
     void setPOS(std::string b);
+
 };
 
 #endif // WORD_H
