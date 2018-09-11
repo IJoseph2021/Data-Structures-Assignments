@@ -3,25 +3,33 @@
 
 #include <string>
 #include <vector>
-#include "word.h"
 
 class Tweet
 {
 private:
     std::string id;
-    std::vector <Word> words;
+    std::string word;
+    std::string POS;
     int count;
+    int posSentiment;
+    int negSentiment;
 public:
 
-    Tweet(std::string a);
+    Tweet(std::string a, std::string b, std::string c, int d, int e);
+    ~Tweet();
     Tweet(const Tweet& a);
     std::string getId();
     void setId(std::string a);
-    void addWord(Word a);
-    std::vector<Word> GetCopyOfVector();
-    Word returnLast();
-    Word& accessWord(int a);
     int getWordCount();
+    int returnSentPos();
+    int returnSentNeg();
+    void setSentPos(int a);
+    void setSentNeg(int a);
+    std::string getWord();
+    std::string getPOS();
+    void setWord(std::string a);
+    void setPOS(std::string a);
+
 
 };
 

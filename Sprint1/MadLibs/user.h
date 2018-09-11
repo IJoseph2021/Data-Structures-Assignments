@@ -10,11 +10,12 @@ private:
     std::vector<Tweet> tweets;
 public:
     User(std::string a);
+    ~User();
     std::string getUsername();
     void setUsername(std::string a);
     void addTweet(Tweet a);
-    Tweet returnLast();
     Tweet& accessTweet(int a);
+    int getSizeofVector();
 };
 
 #endif // USER_H
