@@ -2,6 +2,8 @@
 #include <string>
 #include <iostream>
 using namespace std;
+
+//constructor
 Tweet::Tweet(string a, string b, string c, int d, int e)
 {
     id = a;
@@ -12,9 +14,11 @@ Tweet::Tweet(string a, string b, string c, int d, int e)
     negSentiment = e;
 }
 
+//destructor
 Tweet::~Tweet(){
 
 }
+//Getters and Setters defined
 
 string Tweet::getId(){
     return id;
@@ -44,6 +48,9 @@ void Tweet::setSentNeg(int a){
 void Tweet::setSentPos(int a){
     posSentiment = a;
 }
+
+
+//copy constructor
 Tweet :: Tweet(const Tweet& a){
     id = a.id;
     count = a.count;
