@@ -1,9 +1,29 @@
+#define CATCH_CONFIG_RUNNER
 #include <iostream>
+#include "catch.hpp"
+#include "isaacvector.h"
 
 using namespace std;
 
-int main()
+#define TEST true;
+
+int runCatchTests(int agc, char* const argv[]){
+    return Catch::Session().run();
+}
+
+void parseFile();
+
+int main(int argc, char* argv[])
 {
-    cout << "Hello World!" << endl;
+    if(strcmp (argv[1], "-t") == 0){
+        Catch::Session().run();
+    }
+    else if(strcmp(argv[1],  "-r") == 0){
+
+    }
     return 0;
+}
+
+parseFile(){
+
 }
