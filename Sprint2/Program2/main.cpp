@@ -42,7 +42,6 @@ int main(int argc, char* argv[])
         Catch::Session().run();
     }
     else if (strcmp (argv[1], "-r") == 0){
-        cout<<"hi"<<endl;
         if(myFile.is_open()){
             while(!myFile.eof()){
                 loadIntoVector();
@@ -134,7 +133,7 @@ void parse(){
                 }
             }
             string otherWords ="";
-            vector<string> bracketString;
+            IsaacVector<string> bracketString;
             if(n==0){
                 for(int j =0; j<hold[i].length();j++){
                     string f = "";
@@ -163,7 +162,7 @@ void parse(){
                 otherWords = otherWords + b;
                 n = n -1;
             }
-            for(int i =0; i<bracketString.size(); i++){
+            for(int i =0; i<bracketString.returnSize(); i++){
                 string f = "";
                 for(int j =0; j<bracketString[i].length();j++){
 
