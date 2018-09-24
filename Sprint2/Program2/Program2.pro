@@ -5,9 +5,10 @@ CONFIG -= qt
 
 SOURCES += \
         main.cpp \
-    test.cpp
+    test.cpp \
+    index.cpp
 
 HEADERS += \
-    test.h \
     isaacvector.h \
-    catch.hpp
+    catch.hpp \
+    index.h
