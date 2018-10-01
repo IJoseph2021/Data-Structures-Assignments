@@ -6,7 +6,7 @@
 #include <fstream>
 #include <vector>
 #include <string>
-
+#include <sstream>
 using namespace std;
 vector <string> hold;
 vector <vector<string>> wordLength (20);
@@ -18,9 +18,15 @@ fstream myfile;
 ofstream myfile2;
 int main(int argc, char *argv[])
 {
+
     string a;
     srand (time(NULL));
     myfile.open(argv[1]);
+    getline(myfile, a);
+    getline(myfile, a);
+    stringstream input(a);
+    int x =0;
+    input>>x;
     if(myfile.is_open()){
         while(!myfile.eof()){
             getline(myfile, a);
@@ -38,9 +44,14 @@ int main(int argc, char *argv[])
             myfile2<<i<<":"<<endl;
             for(int j =0; j<wordLength[i].size(); j++){
                 myfile2<<wordLength[i][j]<<endl;
+                x--;
+                if(x<1){
+                    goto label;
+                }
             }
         }
     }
+    label:
     myfile2.close();
     return 0;
 }
