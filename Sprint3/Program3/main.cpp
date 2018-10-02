@@ -13,12 +13,12 @@ vector <vector<string>> wordLength (20);
 void sortVector(string *a, int b);
 int partitionVector(vector<string>&a, int b, int c);
 void quickSortVector(vector<string>& a, int b, int c);
+void bubbleSort(vector<string> &a, int b);
 
 fstream myfile;
 ofstream myfile2;
 int main(int argc, char *argv[])
 {
-
     string a;
     srand (time(NULL));
     myfile.open(argv[1]);
@@ -43,9 +43,16 @@ int main(int argc, char *argv[])
     }
    myfile.close();
    sortVector(hold, y+1);
-   for(int i =0; i<wordLength.size(); i++){
-       quickSortVector(wordLength[i], 0, wordLength[i].size()-1);
+   if(y>800){
+        for(int i =0; i<wordLength.size(); i++){
+        quickSortVector(wordLength[i], 0, wordLength[i].size()-1);
+        }
    }
+   else{
+       for(int i =0; i<wordLength.size(); i++){
+       bubbleSort(wordLength[i], wordLength[i].size());
+       }
+    }
     myfile2.open(argv[2]);
     if(myfile2.is_open()){
         for(int i =0; i<wordLength.size(); i++){
@@ -103,5 +110,15 @@ void quickSortVector(vector<string> &a, int b, int c){
         r = partitionVector(a,b, c);
         quickSortVector(a, b, r);
         quickSortVector(a, r+1, c);
+    }
+}
+
+void bubbleSort(vector<string> &a, int b){
+    for(int i =0; i<b-1; i++){
+        for(int j = 0; j<b - i - 1; j++){
+            if(a[j] > a[j+1]){
+                swap(a[j], a[j+1]);
+            }
+        }
     }
 }
