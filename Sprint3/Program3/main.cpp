@@ -8,12 +8,11 @@
 #include <string>
 #include <sstream>
 using namespace std;
-//vector <string> hold;
+vector <string> hold;
 vector <vector<string>> wordLength (20);
-void sortVector(string *a, int b);
+void sortVector();
 int partitionVector(vector<string>&a, int b, int c);
 void quickSortVector(vector<string>& a, int b, int c);
-void bubbleSort(vector<string> &a, int b);
 
 fstream myfile;
 ofstream myfile2;
@@ -26,20 +25,16 @@ int main(int argc, char *argv[])
     getline(myfile, a);
     getline(myfile, a);
     stringstream input(a);
-    //int x =0;
-    //input>>x;
-    int q = 0;
-    string * hold = new string[10000000];
+    int x =0;
+    input>>x;
     if(myfile.is_open()){
         while(!myfile.eof()){
             getline(myfile, a);
-            //hold.push_back(a);
-            hold[q] = a;
-            q++;
+            hold.push_back(a);
         }
     }
    myfile.close();
-   sortVector(hold, 10000000);
+   sortVector();
    for(int i =0; i<wordLength.size(); i++){
        quickSortVector(wordLength[i], 0, wordLength[i].size()-1);
    }
@@ -48,10 +43,10 @@ int main(int argc, char *argv[])
         for(int i =0; i<wordLength.size(); i++){
             for(int j =0; j<wordLength[i].size(); j++){
                 myfile2<<wordLength[i][j]<<endl;
-    //            x--;
-    //            if(x<1){
-    //                goto label;
-    //            }
+                x--;
+                if(x<1){
+                    goto label;
+                }
             }
         }
     }
@@ -60,13 +55,10 @@ int main(int argc, char *argv[])
     return 0;
 }
 
-void sortVector(string * hold, int b){
+void sortVector(){
     int x = 0;
-    for(int i =0; i<b; i++){
+    for(int i =0; i<hold.size(); i++){
         x = hold[i].length()-1;
-        if(x == -1){
-            break;
-        }
         wordLength[x].push_back(hold[i]);
     }
 }
@@ -103,16 +95,5 @@ void quickSortVector(vector<string> &a, int b, int c){
         r = partitionVector(a,b, c);
         quickSortVector(a, b, r);
         quickSortVector(a, r+1, c);
-
-    }
-}
-
-void bubbleSort(vector<string> &a, int b){
-    for(int i =0; i<b-1; i++){
-        for(int j = 0; j<b - i - 1; j++){
-            if(a[j] > a[j+1]){
-                swap(a[j], a[j+1]);
-            }
-        }
     }
 }
