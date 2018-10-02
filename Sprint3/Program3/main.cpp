@@ -103,6 +103,7 @@ void quickSortVector(vector<string> &a, int b, int c){
         r = partitionVector(a,b, c);
         quickSortVector(a, b, r);
         quickSortVector(a, r+1, c);
+
     }
 }
 
