@@ -41,7 +41,6 @@ int main(int argc, char *argv[])
     myfile2.open(argv[2]);
     if(myfile2.is_open()){
         for(int i =0; i<wordLength.size(); i++){
-            myfile2<<i<<":"<<endl;
             for(int j =0; j<wordLength[i].size(); j++){
                 myfile2<<wordLength[i][j]<<endl;
                 x--;
@@ -68,15 +67,28 @@ int partitionVector(vector<string> &a, int b, int c){
 
     if(a.size()>1){
         int random = b + rand() % (c - b);
-        string pivot = a[random];
+        string u = a[random];
+        random = b + rand() % (c - b);
+        string o = a[random];
+        random = b + rand() % (c - b);
+        string p = a[random];
+        string pivot;
+        if((u<o && u>p) || (u>o && u<p)){
+            pivot = u;
+        }
+        else if((o<u && o>p) || (o>u && o<p)){
+           pivot = o;
+        }
+        else{
+            pivot = p;
+        }
+        //string pivot = a[random];
         int i = b - 1;
         int j = c + 1;
         while (true) {
-
             do {
                 j--;
             } while (a[j] > pivot);
-
             do {
                 i++;
             } while (a[i] < pivot);
