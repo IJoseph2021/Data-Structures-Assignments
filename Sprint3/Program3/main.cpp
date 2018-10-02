@@ -19,49 +19,39 @@ fstream myfile;
 ofstream myfile2;
 int main(int argc, char *argv[])
 {
+
     string a;
     srand (time(NULL));
     myfile.open(argv[1]);
     getline(myfile, a);
-    stringstream input(a);
-    int y =0;
-    input>>y;
-    string * hold = new string[y+1];
     getline(myfile, a);
-    stringstream input1(a);
-    int x =0;
-    input1>>x;
-    int q =0;
+    stringstream input(a);
+    //int x =0;
+    //input>>x;
+    int q = 0;
+    string * hold = new string[10000000];
     if(myfile.is_open()){
         while(!myfile.eof()){
             getline(myfile, a);
-
             //hold.push_back(a);
             hold[q] = a;
             q++;
         }
     }
    myfile.close();
-   sortVector(hold, y+1);
-   if(y>800){
-        for(int i =0; i<wordLength.size(); i++){
-        quickSortVector(wordLength[i], 0, wordLength[i].size()-1);
-        }
+   sortVector(hold, 10000000);
+   for(int i =0; i<wordLength.size(); i++){
+       quickSortVector(wordLength[i], 0, wordLength[i].size()-1);
    }
-   else{
-       for(int i =0; i<wordLength.size(); i++){
-       bubbleSort(wordLength[i], wordLength[i].size());
-       }
-    }
     myfile2.open(argv[2]);
     if(myfile2.is_open()){
         for(int i =0; i<wordLength.size(); i++){
             for(int j =0; j<wordLength[i].size(); j++){
                 myfile2<<wordLength[i][j]<<endl;
-                    x--;
-                    if(x<1){
-                    goto label;
-                    }
+    //            x--;
+    //            if(x<1){
+    //                goto label;
+    //            }
             }
         }
     }
@@ -70,11 +60,14 @@ int main(int argc, char *argv[])
     return 0;
 }
 
-void sortVector(string *a, int b){
+void sortVector(string * hold, int b){
     int x = 0;
     for(int i =0; i<b; i++){
-        x = a[i].length()-1;
-        wordLength[x].push_back(a[i]);
+        x = hold[i].length()-1;
+        if(x == -1){
+            break;
+        }
+        wordLength[x].push_back(hold[i]);
     }
 }
 
