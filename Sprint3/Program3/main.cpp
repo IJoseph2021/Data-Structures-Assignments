@@ -10,23 +10,33 @@
 using namespace std;
 vector <string> hold;
 vector <vector<string>> wordLength (20);
-void sortVector();
-int partitionVector(vector<string>&a, int b, int c);
-void quickSortVector(vector<string>& a, int b, int c);
+int y =0;
+void sortVector(string **a, int b[]);
+int partitionVector(string a[], int b, int c);
+void quickSortVector(string a [], int b, int c);
 
 fstream myfile;
 ofstream myfile2;
+
+
 int main(int argc, char *argv[])
 {
-
     string a;
     srand (time(NULL));
     myfile.open(argv[1]);
+
     getline(myfile, a);
+    stringstream input1(a);
+    input1>>y;
     getline(myfile, a);
     stringstream input(a);
     int x =0;
     input>>x;
+    string ** arr = new string* [20];
+    for(int i =0; i<20;i++){
+        arr[i] = new string[y];
+    }
+    int arrCount [20];
     if(myfile.is_open()){
         while(!myfile.eof()){
             getline(myfile, a);
@@ -34,9 +44,9 @@ int main(int argc, char *argv[])
         }
     }
    myfile.close();
-   sortVector();
-   for(int i =0; i<wordLength.size(); i++){
-       quickSortVector(wordLength[i], 0, wordLength[i].size()-1);
+   sortVector(arr, arrCount);
+   for(int i =0; i<20; i++){
+       quickSortVector(arr[i], 0, (sizeof(arr[i])/sizeof(arr[i][0]))-1);
    }
     myfile2.open(argv[2]);
     if(myfile2.is_open()){
@@ -56,17 +66,26 @@ int main(int argc, char *argv[])
 }
 
 
-void sortVector(){
+
+void sortVector(string **a, int b[]){
     int x = 0;
+    int counter =0;
+    for(int i =0; i<sizeof(b)/sizeof(b[0]); i++){
+        b[i] =0;
+    }
     for(int i =0; i<hold.size(); i++){
         x = hold[i].length()-1;
-        wordLength[x].push_back(hold[i]);
+        a[x][b[x]] = hold[i];
+        b[x] = b[x] + 1;
     }
 }
 
-int partitionVector(vector<string> &a, int b, int c){
 
-    if(a.size()>1){
+
+
+int partitionVector(string a[], int b, int c){
+
+    if(sizeof(a)/sizeof(a[0])>1){
         int random = b + rand() % (c - b);
         string pivot = a[random];
         int i = b - 1;
@@ -90,7 +109,7 @@ int partitionVector(vector<string> &a, int b, int c){
 }
 
 
-void quickSortVector(vector<string> &a, int b, int c){
+void quickSortVector(string a[], int b, int c){
     int r;
     if(b<c){
         r = partitionVector(a,b, c);
