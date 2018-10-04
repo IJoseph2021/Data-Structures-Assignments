@@ -14,6 +14,7 @@ int y =0;
 void sortVector(string **a, int b[]);
 int partitionVector(string a[], int b, int c);
 void quickSortVector(string a [], int b, int c);
+void insertionSort(string arr[], int n);
 
 fstream myfile;
 ofstream myfile2;
@@ -46,7 +47,8 @@ int main(int argc, char *argv[])
    myfile.close();
    sortVector(arr, arrCount);
    for(int i =0; i<20; i++){
-       quickSortVector(arr[i], 0, (sizeof(arr[i])/sizeof(arr[i][0]))-1);
+       //quickSortVector(arr[i], 0, (sizeof(arr[i])/sizeof(arr[i][0]))-1);
+       insertionSort(arr[i], (sizeof(arr[i])/sizeof(arr[i][0])));
    }
     myfile2.open(argv[2]);
     if(myfile2.is_open()){
@@ -116,4 +118,25 @@ void quickSortVector(string a[], int b, int c){
         quickSortVector(a, b, r);
         quickSortVector(a, r+1, c);
     }
+}
+
+void insertionSort(string arr[], int n)
+{
+   int i,  j;
+   string key;
+   for (i = 1; i < n; i++)
+   {
+       key = arr[i];
+       j = i-1;
+
+       /* Move elements of arr[0..i-1], that are
+          greater than key, to one position ahead
+          of their current position */
+       while (j >= 0 && arr[j] > key)
+       {
+           arr[j+1] = arr[j];
+           j = j-1;
+       }
+       arr[j+1] = key;
+   }
 }
