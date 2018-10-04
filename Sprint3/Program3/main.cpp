@@ -8,10 +8,10 @@
 #include <string>
 #include <sstream>
 using namespace std;
-vector <string> hold;
+//vector <string> hold;
 vector <vector<string>> wordLength (20);
 int y =0;
-void sortVector(string **a, int b[]);
+void sortVector(string **a, int b[], string c[]);
 int partitionVector(string a[], int b, int c);
 void quickSortVector(string a [], int b, int c);
 void insertionSort(string arr[], int n);
@@ -39,14 +39,17 @@ int main(int argc, char *argv[])
         arr[i] = new string[y];
     }
     int arrCount [20];
+    string hold [y];
+    int q =0;
     if(myfile.is_open()){
         while(!myfile.eof()){
             getline(myfile, a);
-            hold.push_back(a);
+            hold[q] = a;
+            q++;
         }
     }
    myfile.close();
-   sortVector(arr, arrCount);
+   sortVector(arr, arrCount, hold);
    for(int i =0; i<20; i++){
        //quickSortVector(arr[i], 0, (sizeof(arr[i])/sizeof(arr[i][0]))-1);
        //insertionSort(arr[i], (sizeof(arr[i])/sizeof(arr[i][0])));
@@ -71,15 +74,15 @@ int main(int argc, char *argv[])
 
 
 
-void sortVector(string **a, int b[]){
+void sortVector(string **a, int b[], string c[]){
     int x = 0;
     int counter =0;
     for(int i =0; i<sizeof(b)/sizeof(b[0]); i++){
         b[i] =0;
     }
-    for(int i =0; i<hold.size(); i++){
-        x = hold[i].length()-1;
-        a[x][b[x]] = hold[i];
+    for(int i =0; i<sizeof(c)/sizeof(c[0]); i++){
+        x = c[i].length()-1;
+        a[x][b[x]] = c[i];
         b[x] = b[x] + 1;
     }
 }
