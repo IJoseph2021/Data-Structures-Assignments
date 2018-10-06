@@ -54,9 +54,9 @@ int main(int argc, const char *argv[])
    sortVector(arr, arrCount, hold);
    delete []hold;
    for(int i =0; i<31; i++){
-       //quickSortVector(arr[i], 0, arrCount[i]-1, arrCount[i]);
+       quickSortVector(arr[i], 0, arrCount[i]-1, arrCount[i]);
        //insertionSort(arr[i], (sizeof(arr[i])/sizeof(arr[i][0])));
-       bubbleSort(arr[i], arrCount[i]);
+       //bubbleSort(arr[i], arrCount[i]);
    }
     myfile2.open(argv[2]);
     if(myfile2.is_open()){
