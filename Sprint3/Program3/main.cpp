@@ -13,6 +13,9 @@ vector <vector<string>> wordLength (20);
 void sortVector(string **a, int b[], vector<string> c);
 int partitionVector(vector<string>&a, int b, int c);
 void quickSortVector(vector<string>& a, int b, int c);
+void DualPivotQuickSort(vector <string> arr, int low, int high);
+int partition(vector <string> arr, int low, int high, int* lp);
+
 int y =0;
 
 fstream myfile;
@@ -45,7 +48,8 @@ int main(int argc, char *argv[])
    myfile.close();
    sortVector(arr, arrCount, hold);
    for(int i =0; i<wordLength.size(); i++){
-       quickSortVector(wordLength[i], 0, wordLength[i].size()-1);
+       //quickSortVector(wordLength[i], 0, wordLength[i].size()-1);
+       DualPivotQuickSort(wordLength[i], 0, wordLength[i].size()-1);
    }
     myfile2.open(argv[2]);
     if(myfile2.is_open()){
@@ -110,4 +114,60 @@ void quickSortVector(vector<string> &a, int b, int c){
         quickSortVector(a, b, r);
         quickSortVector(a, r+1, c);
     }
+}
+
+void DualPivotQuickSort(vector <string> arr, int low, int high)
+{
+    if (low < high) {
+        // lp means left pivot, and rp means right pivot.
+        int lp, rp;
+        rp = partition(arr, low, high, &lp);
+        DualPivotQuickSort(arr, low, lp - 1);
+        DualPivotQuickSort(arr, lp + 1, rp - 1);
+        DualPivotQuickSort(arr, rp + 1, high);
+    }
+}
+
+int partition(vector <string> arr, int low, int high, int* lp)
+{
+    if (arr[low] > arr[high])
+        swap(arr[low], arr[high]);
+    // p is the left pivot, and q is the right pivot.
+    int j = low + 1;
+    int g = high - 1, k = low + 1;
+    string p = arr[low], q = arr[high];
+    while (k <= g) {
+
+        // if elements are less than the left pivot
+        if (arr[k] < p) {
+            swap(arr[k], arr[j]);
+            j++;
+        }
+
+        // if elements are greater than or equal
+        // to the right pivot
+        else if (arr[k] >= q) {
+            while (arr[g] > q && k < g)
+                g--;
+            swap(arr[k], arr[g]);
+            g--;
+            if (arr[k] < p) {
+                swap(arr[k], arr[j]);
+                j++;
+            }
+        }
+        k++;
+    }
+    j--;
+    g++;
+
+    // bring pivots to their appropriate positions.
+    swap(arr[low], arr[j]);
+    swap(arr[high], arr[g]);
+
+    // returning the indeces of the pivots.
+    *lp = j; // because we cannot return two elements
+             // from a function.
+
+    return g;
 }
