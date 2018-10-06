@@ -84,7 +84,7 @@ void sortVector(string **a, int b[], string c[]){
     for(int i =0; i<31; i++){
         b[i] =0;
     }
-    for(int i =0; i<10000000; i++){
+    for(int i =0; i<y; i++){
         x = c[i].length()-1;
         a[x][b[x]] = c[i];
         b[x] = b[x] + 1;
