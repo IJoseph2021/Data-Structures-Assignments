@@ -37,7 +37,7 @@ int main(int argc, const char *argv[])
     input>>x;
     string ** arr = new string* [31];
     for(int i =0; i<31;i++){
-        arr[i] = new string[y];
+        arr[i] = new string[y/5];
     }
     int* arrCount  = new int [31];
     string* hold = new string[y+1];
@@ -48,7 +48,7 @@ int main(int argc, const char *argv[])
             hold[q] = a;
             q++;
         }
-        cout<<q<<endl;
+        cout<<"Yikers:"<<q<<endl;
     }
    myfile.close();
    sortVector(arr, arrCount, hold);
