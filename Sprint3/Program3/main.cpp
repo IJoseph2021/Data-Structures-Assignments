@@ -12,7 +12,7 @@ void sortVector(string **a, int b[], string c[]);
 int partitionVector(string a[], int b, int c, int d);
 void quickSortVector(string a [], int b, int c, int d);
 //void insertionSort(string arr[], int n);
-//void bubbleSort(string arr[], int n);
+void bubbleSort(string arr[], int n);
 
 
 
@@ -48,14 +48,15 @@ int main(int argc, const char *argv[])
             hold[q] = a;
             q++;
         }
+        cout<<q<<endl;
     }
    myfile.close();
    sortVector(arr, arrCount, hold);
    delete []hold;
    for(int i =0; i<31; i++){
-       quickSortVector(arr[i], 0, arrCount[i]-1, arrCount[i]);
+       //quickSortVector(arr[i], 0, arrCount[i]-1, arrCount[i]);
        //insertionSort(arr[i], (sizeof(arr[i])/sizeof(arr[i][0])));
-       //bubbleSort(arr[i], (sizeof(arr[i])/sizeof(arr[i][0])));
+       bubbleSort(arr[i], arrCount[i]);
    }
     myfile2.open(argv[2]);
     if(myfile2.is_open()){
