@@ -63,7 +63,7 @@ int main(int argc, const char *argv[])
    delete []hold;
    for(int i =0; i<30; i++){
 
-       //optimizedQuickSort(arr[i], 0, arrCount[i]-1, 750);
+       optimizedQuickSort(arr[i], 0, arrCount[i]-1, 20);
        insertionSort(arr[i], 0, arrCount[i] - 1);
        //insertionSort(arr[i], (sizeof(arr[i])/sizeof(arr[i][0])));
        //bubbleSort(arr[i], (sizeof(arr[i])/sizeof(arr[i][0])));
