@@ -9,7 +9,9 @@
 using namespace std;
 
 //a bunch of different sorting algorithms
-void sortVector(string **a, int b[], string c[], int q);
+
+
+void sortVector(string a[31][10000001], int b[], string c[], int q);
 int partitionVector(string a[], int b, int c, int d);
 void quickSortVector(string a [], int b, int c, int d);
 void DualPivotQuickSort(string * arr, int b, int c);
@@ -21,7 +23,7 @@ void optimizedQuickSort2(string *arr, int b, int c, int d, int e);
 //helpful functions
 int convertToInt(string a);
 //picks a sort algorithm to use
-void sortAndPickAlgorithm(string ** arr, int arrCount[]);
+void sortAndPickAlgorithm(string arr[31][10000001], int arrCount[]);
 
 
 
@@ -44,11 +46,12 @@ int main(int argc, const char *argv[])
     int x =convertToInt(a);
 
     //dynamically allocate a double pointer array to hold the sorted data
-    string ** arr = new string* [31];
+    /*string ** arr = new string* [31];
     for(int i =0; i<31;i++){
-        arr[i] = new string[y];
-    }
+        arr[i] = new string[y/5];
+    }*/
 
+    string arr[31][10000001];
     //allocate an int array to keep track of the number of words in each bucket
     int* arrCount  = new int [31];
 
@@ -93,6 +96,7 @@ int main(int argc, const char *argv[])
     for(int i =0; i<31;i++){
         delete []arr[i];
     }
+
     delete []arr;
     delete []arrCount;
     return 0;
@@ -100,7 +104,7 @@ int main(int argc, const char *argv[])
 
 
 //sort array by length
-void sortVector(string **a, int b[], string c[], int q){
+void sortVector(string a[31][10000001], int b[], string c[], int q){
     int x = 0;
     for(int i =0; i<31; i++){
         b[i] =0;
@@ -295,11 +299,11 @@ int convertToInt(string a){
 }
 
 //sort each array and implement sorting algorithm
-void sortAndPickAlgorithm(string ** arr, int arrCount[]){
+void sortAndPickAlgorithm(string arr[31][10000001], int arrCount[]){
     for(int i =0; i<31; i++){
        // radixSort(arr[i], (int)arrCount[i]);
-        //optimizedQuickSort(arr[i], 0, arrCount[i]-1, 120);
-        optimizedQuickSort2(arr[i], 0, arrCount[i]-1, arrCount[i], 120);
+        optimizedQuickSort(arr[i], 0, arrCount[i]-1, 120);
+        //optimizedQuickSort2(arr[i], 0, arrCount[i]-1, arrCount[i], 120);
         //insertionSort(arr[i], 0, arrCount[i] - 1);
         //DualPivotQuickSort(arr[i], 0, arrCount[i]-1);
         //insertionSort(arr[i], (sizeof(arr[i])/sizeof(arr[i][0])));
