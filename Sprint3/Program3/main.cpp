@@ -295,8 +295,8 @@ int convertToInt(string a){
 void sortAndPickAlgorithm(string ** arr, int arrCount[]){
     for(int i =0; i<31; i++){
        // radixSort(arr[i], (int)arrCount[i]);
-        optimizedQuickSort(arr[i], 0, arrCount[i]-1, 120);
-        //optimizedQuickSort2(arr[i], 0, arrCount[i]-1, arrCount[i], 120);
+        //optimizedQuickSort(arr[i], 0, arrCount[i]-1, 120);
+        optimizedQuickSort2(arr[i], 0, arrCount[i]-1, arrCount[i], 120);
         //insertionSort(arr[i], 0, arrCount[i] - 1);
         //DualPivotQuickSort(arr[i], 0, arrCount[i]-1);
         //insertionSort(arr[i], (sizeof(arr[i])/sizeof(arr[i][0])));
