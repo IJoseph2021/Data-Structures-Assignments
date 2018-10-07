@@ -45,7 +45,7 @@ int main(int argc, const char *argv[])
 
     //dynamically allocate a double pointer array to hold the sorted data
     string ** arr = new string* [31];
-    for(int i =0; i<20;i++){
+    for(int i =0; i<31;i++){
         arr[i] = new string[y];
     }
 
@@ -90,6 +90,9 @@ int main(int argc, const char *argv[])
     }
     label:
     myfile2.close();
+    for(int i =0; i<31;i++){
+        delete []arr[i];
+    }
     delete []arr;
     delete []arrCount;
     return 0;
