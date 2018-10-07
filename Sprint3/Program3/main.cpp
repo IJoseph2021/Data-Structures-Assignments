@@ -11,7 +11,7 @@ using namespace std;
 //a bunch of different sorting algorithms
 
 
-void sortVector(string a[31][10000001], int b[], string c[], int q);
+void sortVector(string a[31][751], int b[], string c[], int q);
 int partitionVector(string a[], int b, int c, int d);
 void quickSortVector(string a [], int b, int c, int d);
 void DualPivotQuickSort(string * arr, int b, int c);
@@ -23,7 +23,7 @@ void optimizedQuickSort2(string *arr, int b, int c, int d, int e);
 //helpful functions
 int convertToInt(string a);
 //picks a sort algorithm to use
-void sortAndPickAlgorithm(string arr[31][10000001], int arrCount[]);
+void sortAndPickAlgorithm(string arr[31][751], int arrCount[]);
 
 
 
@@ -51,7 +51,7 @@ int main(int argc, const char *argv[])
         arr[i] = new string[y/5];
     }*/
 
-    string arr[31][10000001];
+    string arr[31][751];
     //allocate an int array to keep track of the number of words in each bucket
     int* arrCount  = new int [31];
 
@@ -93,18 +93,18 @@ int main(int argc, const char *argv[])
     }
     label:
     myfile2.close();
-    for(int i =0; i<31;i++){
+    /*for(int i =0; i<31;i++){
         delete []arr[i];
-    }
+    }*/
 
-    delete []arr;
+    //delete []arr;
     delete []arrCount;
     return 0;
 }
 
 
 //sort array by length
-void sortVector(string a[31][10000001], int b[], string c[], int q){
+void sortVector(string a[31][751], int b[], string c[], int q){
     int x = 0;
     for(int i =0; i<31; i++){
         b[i] =0;
@@ -299,7 +299,7 @@ int convertToInt(string a){
 }
 
 //sort each array and implement sorting algorithm
-void sortAndPickAlgorithm(string arr[31][10000001], int arrCount[]){
+void sortAndPickAlgorithm(string arr[31][751], int arrCount[]){
     for(int i =0; i<31; i++){
        // radixSort(arr[i], (int)arrCount[i]);
         optimizedQuickSort(arr[i], 0, arrCount[i]-1, 120);
