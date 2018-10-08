@@ -222,9 +222,9 @@ int convertToInt(string a){
 //sort each array and implement sorting algorithm
 void sortAndPickAlgorithm(string ** arr, int arrCount[]){
     for(int i =0; i<31; i++){
-        optimizedQuickSort2(arr[i], 0, arrCount[i]-1, arrCount[i], 30);
+        //optimizedQuickSort2(arr[i], 0, arrCount[i]-1, arrCount[i], 30);
         //bubbleSort(arr[i], 0, arrCount[i] - 1);
-        //quickSortVector(arr[i], 0, arrCount[i] - 1, arrCount[i]);
+        quickSortVector(arr[i], 0, arrCount[i] - 1, arrCount[i]);
     }
 }
 
