@@ -34,9 +34,9 @@ void printOut();
 
 //global variables
 //This vector will hold the data from each line in the file
-IsaacVector <string> hold;
+IsaacVector <string> hold(0);
 //This vector will hold the word objects
-IsaacVector <Index> objects;
+IsaacVector <Index> objects(0);
 ifstream myFile;
 ofstream myFile2;
 
@@ -250,7 +250,7 @@ void parse(){
             }
             //create a string and a vector to hold the string remnant and bracketed input respectively
             string otherWords ="";
-            IsaacVector<string> bracketString;
+            IsaacVector<string> bracketString(0);
             //if there are no brackets then use the method that involves no brackets
             if(n==0){
                 lineNoBrackets(hold[i], x);

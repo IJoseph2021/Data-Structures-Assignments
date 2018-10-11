@@ -13,7 +13,6 @@ private:
     T* arrayPointer;
 
 public:
-    //constructor
     IsaacVector();
     //constructor
     IsaacVector(int a);
@@ -26,27 +25,26 @@ public:
     //overlaoded bracket operator
     T& operator [](int a);
     //overloaded assignment operator
-    IsaacVector& operator =(const IsaacVector<T>&);
+    IsaacVector<T>& operator =(const IsaacVector<T>&);
     //return size of array
-    int returnSize() ;
-    int returnCapactiy() ;
+    int returnSize() const ;
+    int returnCapacity() ;
     //clear the array
     void clearVect();
-    T& returnIndex(int a) const;
+    T returnIndex(int a) const;
 };
 
 //contructor
-//size is 0, but capacity is initialized to 10
 //new array of that size is allocated
+//similar to above but with a parameter
 template<class T>
 IsaacVector<T>::IsaacVector()
 {
     size = 0;
-    capacity = 10;
-    arrayPointer = new T[capacity];
+    capacity = 0;
+    arrayPointer = new T[0];
 }
 
-//similar to above but with a parameter
 template<class T>
 IsaacVector<T>::IsaacVector(int a)
 {
@@ -59,19 +57,19 @@ IsaacVector<T>::IsaacVector(int a)
 //copy size and capacity
 //iterate through array and copy each value
 template<class T>
-IsaacVector<T>::IsaacVector(const IsaacVector& a)
+IsaacVector<T>::IsaacVector(const IsaacVector<T>& a)
 {
     size = a.size;
     capacity = a.capacity;
     arrayPointer = new T[capacity];
     for(int i =0; i<a.size; i++){
-        arrayPointer[i] = a.arrayPointer[i];
+        this->arrayPointer[i] = a.arrayPointer[i];
     }
 }
 
 //return Index
 template<class T>
-T& IsaacVector<T>::returnIndex(int a) const{
+T IsaacVector<T>::returnIndex(int a) const{
     return arrayPointer[a];
 }
 
@@ -95,8 +93,8 @@ void IsaacVector<T>::clearVect(){
 //and set pointer to point to temp
 template<class T>
 void IsaacVector<T>::push_back(T a){
-    if(size+1>capacity){
-        capacity = size*2;
+    if(size+1 >= capacity){
+        capacity = size*2 + 1;
         T* temp = new T[capacity];
         for(int i = 0; i<size; i++){
             temp[i] = arrayPointer[i];
@@ -131,15 +129,12 @@ IsaacVector<T> &IsaacVector<T>::operator =(const IsaacVector<T> &a)
 }
 
 template <class T>
-int IsaacVector<T>::returnSize(){
+int IsaacVector<T>::returnSize() const{
     return size;
 }
 
 template <class T>
-int IsaacVector<T>::returnCapactiy(){
+int IsaacVector<T>::returnCapacity(){
     return capacity;
 }
-
-
 #endif // ISAACVECTOR_H
-

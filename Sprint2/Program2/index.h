@@ -3,7 +3,7 @@
 
 //include statements
 #include "isaacvector.h"
-#include <vector>
+
 #include <string>
 
 //index class
@@ -18,7 +18,7 @@ private:
     //I spent hours trying to debug it, but to no avail
     //Please be merciful for this one, I implemented my IsaacVector at least three times in the main.cpp and it works well
     //I just could not get it to work here
-    std::vector <int> page;
+    IsaacVector <int> page;
 public:
     //Constructor, destructor, copt constructor, overloaded assignment operator
     Index();

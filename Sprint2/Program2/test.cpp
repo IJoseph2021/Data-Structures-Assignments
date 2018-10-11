@@ -19,11 +19,11 @@ TEST_CASE("IsaacVector", "")
     SECTION("Constructor"){
         //check to see if constructor set size and capacity properly for all vectors a, b, c
         REQUIRE(a.returnSize() == 5);
-        REQUIRE(a.returnCapactiy() == 10);
+        REQUIRE(a.returnCapacity() == 10);
         REQUIRE(b.returnSize() == 0);
-        REQUIRE(b.returnCapactiy() == 15);
+        REQUIRE(b.returnCapacity() == 15);
         REQUIRE(c.returnSize() == 0);
-        REQUIRE(c.returnCapactiy() == 100);
+        REQUIRE(c.returnCapacity() == 100);
     }
 
     //check to see if the [] operator was successfully overloaded
@@ -52,7 +52,7 @@ TEST_CASE("IsaacVector", "")
         REQUIRE(a[10] == 125);
         //also made sure to make size increase past the initial capacity to check to see if capacity would be equal to double size
         REQUIRE(a.returnSize() == 11);
-        REQUIRE(a.returnCapactiy() == 20);
+        REQUIRE(a.returnCapacity() == 20);
     }
 
     //check to see if overloaded assignment operator was working for my vector

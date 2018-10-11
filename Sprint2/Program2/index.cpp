@@ -1,13 +1,14 @@
 #include "index.h"
 using namespace std;
 //include statements
-#include <vector>
+
 #include <string>
 #include <iostream>
 
 //constructor
 Index::Index(){
-    word = "";
+   // word = "";
+
 }
 
 //destructor
@@ -51,7 +52,7 @@ void Index::addPage(int a){
 //print out words and their pages that they occur on
 void Index::printPages(){
     cout<<word<<": ";
-    for(int i =0; i<page.size();i++){
+    for(int i =0; i<page.returnSize();i++){
         cout<<page[i]<<", ";
     }
     cout<<endl;
@@ -60,8 +61,8 @@ void Index::printPages(){
 //return string that does the same thing the above method does
 string Index::returnPages(){
     string s = word + ": ";
-    for(int i =0; i<page.size();i++){
-        if(i == page.size()-1){
+    for(int i =0; i<page.returnSize();i++){
+        if(i == page.returnSize()-1){
             s = s + to_string(page[i]);
             return s;
         }
@@ -72,7 +73,7 @@ string Index::returnPages(){
 
 //checks to see if there the same page number occurs twice
 bool Index::findPaperDuplicate(int b){
-    for(int i =0; i<page.size(); i++){
+    for(int i =0; i<page.returnSize(); i++){
         if(page[i] == b){
             return true;
         }
@@ -80,11 +81,13 @@ bool Index::findPaperDuplicate(int b){
 }
 
 //overloaded assignemnet operator that would not work with my vector
-Index& Index::operator =(const Index &a){
+Index &Index::operator =(const Index &a){
     word = a.word;
-    page.clear();
-    for(int i =0; i<a.page.size(); i++){
-        page.push_back(a.page[i]);
-    }
+    this->page = a.page;
+    /*page.clearVect();
+    for(int i =0; i<a.page.returnSize(); i++){
+        page.push_back(a.page.returnIndex(i));
+
+    }*/
     return *this;
 }
