@@ -10,7 +10,7 @@ private:
     Node<T>* prev;
 public:
     Node(T a);
-    ~Node();
+
 };
 template <class T>
 Node<T>::Node(T a){
@@ -18,10 +18,7 @@ Node<T>::Node(T a){
     prev = nullptr;
     data = a;
 }
-template <class T>
-Node<T>::~Node(){
 
-}
 
 
 #endif // NODE_H

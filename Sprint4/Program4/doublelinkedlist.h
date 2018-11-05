@@ -5,6 +5,8 @@
 #include <iostream>
 #include <string>
 
+using namespace std;
+
 template <class T>
 class DoubleLinkedList{
 private:
@@ -22,17 +24,22 @@ public:
     void insertFront(T a);
     void insertAtIndex(int a, T b);
     void clear();
-    void removeAt(int a);
     void removeFront();
     void removeBack();
     DoubleLinkedList<T>& operator =(const DoubleLinkedList<T>&);
     int returnSize();
+    void printList();
+    void resetIterator();
+    void stepIterator();
+    T& returnIterator();
+    bool iterNull();
 };
 
 template<class T>
 DoubleLinkedList<T>::DoubleLinkedList(){
     head = nullptr;
     tail = nullptr;
+    iter = head;
     size = 0;
 }
 
@@ -41,6 +48,7 @@ DoubleLinkedList<T>::DoubleLinkedList(T a){
     Node<T>* temp = new Node<T>(a);
     head = temp;
     tail = temp;
+    iter = head;
     size = 1;
 }
 
@@ -81,9 +89,11 @@ DoubleLinkedList<T> &DoubleLinkedList<T>::operator =(const DoubleLinkedList<T> &
         Node<T>* tempNext = a.head->next;
         size++;
         while(tempNext != nullptr){
-            temp->next = new Node<T>(tempNext->data);
+            /*temp->next = new Node<T>(tempNext->data);
             temp = temp->next;
-            tempNext = tempNext->next;
+            tempNext = tempNext->next;*/
+            temp = temp->next;
+            this->insertBack(tempNext->data);
             size++;
         }
         tail = temp;
@@ -136,16 +146,21 @@ void DoubleLinkedList<T>::removeFront(){
     if(head == nullptr){
         return;
     }
-    if(head == tail){
+    else if(head == tail){
         delete head;
         head = nullptr;
         tail = nullptr;
+        iter = nullptr;
         size --;
     }
     else{
+        Node<T>* temp = head;
         head = head->next;
         delete head->prev;
         head->prev = nullptr;
+        if(iter == temp){
+            iter = head;
+        }
         size--;
     }
 }
@@ -157,12 +172,17 @@ void DoubleLinkedList<T>::insertBack(T a){
     if(head == nullptr){
         head = new Node<T>(a);
         tail = head;
+        iter = head;
         size++;
     }
     else{
+        Node<T>* temp = tail;
         tail->next = new Node<T>(a);
         tail->next->prev = tail;
         tail = tail->next;
+        if(iter == temp){
+            iter = temp;
+        }
         size++;
     }
 }
@@ -172,12 +192,17 @@ void DoubleLinkedList<T>::insertFront(T a){
     if(head == nullptr){
         head = new Node<T>(a);
         tail = head;
+        iter = head;
         size++;
     }
     else{
+        Node<T>* temp = head;
         head->prev = new Node<T>(a);
         head->prev->next = head;
         head = head->prev;
+        if(iter == temp){
+            iter = head;
+        }
         size++;
     }
 }
@@ -194,7 +219,7 @@ void DoubleLinkedList<T>::insertAtIndex(int a, T b){
         std::cout<<"size is: "<<size<<std::endl;
         return;
     }
-    while(curr->next!=nullptr && a>0){
+    while(curr->next!=nullptr && a>1){
         curr = curr->next;
         a--;
     }
@@ -234,7 +259,38 @@ int DoubleLinkedList<T>::returnSize(){
     return size;
 }
 
+template <class T>
+void DoubleLinkedList<T>::printList(){
+    Node<T>* curr = head;
+    while(curr!=nullptr){
+        cout<<curr->data<<"->";
+        curr = curr->next;
 
+    }
+}
 
+template <class T>
+void DoubleLinkedList<T>::stepIterator(){
+    iter = iter->next;
+}
 
+template <class T>
+void DoubleLinkedList<T>::resetIterator(){
+    iter = head;
+}
+
+template <class T>
+bool DoubleLinkedList<T>::iterNull(){
+    if(iter == nullptr){
+        return true;
+    }
+    else{
+        return false;
+    }
+}
+
+template <class T>
+T& DoubleLinkedList<T>::returnIterator(){
+    return iter->data;
+}
 #endif // DOUBLELINKEDLIST_H

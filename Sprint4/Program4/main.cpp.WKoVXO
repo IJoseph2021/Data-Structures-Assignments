@@ -1,0 +1,133 @@
+#define CATCH_CONFIG_RUNNER
+
+#include "catch.hpp"
+#include <iostream>
+#include "doublelinkedlist.h"
+#include "node.h"
+#include "stack.h"
+#include <fstream>
+#include <string>
+#include "adjacencylist.h"
+#include <sstream>
+using namespace std;
+
+AdjacencyList <string> master;
+
+int runCatchTests(int agc, char* const argv[]){
+    return Catch::Session().run();
+}
+
+void iterativeBackTrack(string a, string b);
+void distanceFinder(string a [], string b []);
+//main method with command line arguments passed in
+int main(int argc, char* argv[])
+{
+    //if the first argument is "-t" then perform Catch TDD
+    if(strcmp (argv[1], "-t") == 0){
+        Catch::Session().run();
+    }
+    else{
+        ifstream myFile;
+        int x = 0;
+        string hold;
+        myFile.open(argv[2]);
+        if(myFile.is_open()){
+            getline(myFile, hold);
+            stringstream convert(hold);
+            convert>>x;
+            //ASK IF WE CAN USE ARRAYS
+            string *a = new string[x];
+            string *b = new string[x];
+            int y = 0;
+            while(!myFile.eof()){
+              getline(myFile, hold, '|');
+              a[y] = hold;
+              getline(myFile, hold);
+              if(x-y != 1){
+                hold.erase(hold.length()-1);
+              }
+              b[y] = hold;
+              y++;
+            }
+            for(int i  = 0; i<x;i++){
+                cout<<a[i]<<"|"<<b[i]<<endl;
+                master.insertFor(a[i], b[i]);
+                master.insertFor(b[i], a[i]);
+            }
+            master.printList();
+        }
+        ifstream myFile2;
+        /*myFile2.open(argv[3]);
+        if(myFile2.is_open()){
+            int s = 0;
+            getline(myFile2, hold);
+
+            stringstream convert(hold);
+            convert>>x;
+
+            string *a = new string[x];
+            string *b = new string[x];
+            int y = 0;
+            while(!myFile2.eof()){
+              getline(myFile2, hold, '|');
+              a[0] = hold;
+              getline(myFile2, hold);
+              //if(x-y != 1){
+              //  hold.erase(hold.length()-1);
+              //}
+              b[y] = hold;
+              y++;
+            }
+            cout<<x<<endl;*/
+            string a [] = {"Cheri", "David", "David"};
+            string b[] = {"Adam", "Barbara", "Adam"};
+
+            for(int i = 0; i<3; i++){
+              iterativeBackTrack(a[i], b[i]);
+            }
+
+       // }
+    return 0;
+    }
+}
+
+void iterativeBackTrack(string a, string b){
+    Stack holder;
+    string target = b;
+    string top;
+    string source = a;
+    holder.push(source);
+    int x = 1000;
+    for(int i = 1; i<=master.returnSize(); i++){
+        master[i].resetIterator();
+    }
+    while(holder.isEmpty()== false){
+        if(holder.returnTop() == target){
+            if(holder.returnCount()-1 < x){
+                x = holder.returnCount()-1;
+            }
+
+            string y = holder.pop();
+
+        }
+        else{
+            master.returnList(holder.returnTop()).stepIterator();
+
+            while(master.returnList(holder.returnTop()).iterNull() == false && holder.searchStack(master.returnList(holder.returnTop()).returnIterator()) == true){
+                master.returnList(holder.returnTop()).stepIterator();
+            }
+            if(master.returnList(holder.returnTop()).iterNull() == false){
+                holder.push(master.returnList(holder.returnTop()).returnIterator());
+            }
+            else{
+                master.returnList(holder.returnTop()).resetIterator();
+                string r = holder.pop();
+            }
+        }
+    }
+}
+
+
+void distanceFinder(string a[], string b[]){
+
+}
